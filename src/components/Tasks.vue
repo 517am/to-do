@@ -1,13 +1,24 @@
-<script></script>
+<script>
+export default {
+  props:{
+    tasks: {
+      type: Array,
+      requared:true
+    }
+  }
+};
+</script>
 
 <template>
   <div class="tasks">
-    <ul>
+    <ul v-for="task in tasks">
       <li>
-        <p>Закончить со стилями</p>
+        <p>{{task.textTask}}</p>
+        <div class="btnsActions">
+          <i>aS</i>
+          <i>cs</i>
+        </div>
       </li>
-      <li>qwe</li>
-      <li>qwe</li>
     </ul>
   </div>
 </template>
@@ -21,6 +32,13 @@ ul li {
   height: 30px;
   margin: 20px 0;
   color: #333e48;
-  line-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul li p,
+ul li div {
+  margin: 0 10px;
 }
 </style>

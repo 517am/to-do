@@ -1,5 +1,20 @@
-<script setup>
+<script>
   import DoList from './components/DoList.vue';
+
+  export default {
+  data() {
+    return {
+      tasks: [
+        { id: 1, textTask: "Выучить вью" },
+        { id: 1, textTask: "Выучить vue" },
+        { id: 1, textTask: "Выучить js" },
+      ],
+    };
+  },
+  components: {
+    DoList
+  }
+};
 </script>
 
 <template>
@@ -14,7 +29,7 @@
         </div>
       </header>
 
-     <do-list></do-list>
+     <do-list :tasks = "tasks"></do-list>
 
     </div>
   </div>

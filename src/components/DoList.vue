@@ -1,6 +1,34 @@
-<script setup>
+<script>
 import Favorites from "./Favorites.vue";
 import Tasks from "./Tasks.vue";
+
+export default {
+  data() {
+    return {
+      userTask: "",
+    };
+  },
+
+  props:{
+    tasks: {
+      type: Array
+    }
+  },
+
+  components: {
+    Favorites,
+    Tasks,
+  },
+  methods: {
+    createTask() {
+      const newTask = {
+        id: Date.now(),
+        textTask: this.userTask
+      }
+      this.tasks.push(newTask);
+    },
+  },
+};
 </script>
 
 <template>
@@ -8,17 +36,18 @@ import Tasks from "./Tasks.vue";
     <div class="newTask">
       <div class="addTask">
         <h1>Добавьте новую задачу</h1>
-        <form action="">
+        <form @submit.prevent>
           <input
             class="textTask"
             type="text"
             placeholder="Может быть, выключить утюг?"
+            v-model="userTask"
           />
-          <button>asd</button>
+          <button @click="createTask">asd</button>
         </form>
       </div>
 
-      <Tasks></Tasks>
+      <Tasks :tasks="tasks"></Tasks>
     </div>
 
     <Favorites></Favorites>
