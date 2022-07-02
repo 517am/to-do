@@ -1,16 +1,12 @@
 <script>
-
 import Favorites from "./components/Favorites.vue";
 import Tasks from "./components/Tasks.vue";
 
 export default {
   data() {
     return {
-      tasks: [
-        { id: 1, textTask: "Выучить вью" },
-        { id: 2, textTask: "Выучить vue" },
-        { id: 3, textTask: "Выучить js" },
-      ],
+      tasks: [],
+
       userTask: "",
     };
   },
@@ -25,10 +21,15 @@ export default {
     createTask() {
       const newTask = {
         id: Date.now(),
-        textTask: this.userTask
-      }
+        textTask: this.userTask,
+        taskFavorit: false,
+      };
       this.tasks.push(newTask);
       this.userTask = "";
+    },
+
+    addFavorit(task) {
+      task.taskFavorit = true;
     },
   },
 };
@@ -42,6 +43,7 @@ export default {
           >Для сохранения данных войдите<br />
           или зарегиструйтесь</span
         >
+
         <h1 class="logo">TO-DO</h1>
         <div class="login">
           <a href="" class="log">Войти</a>/
@@ -63,12 +65,14 @@ export default {
               <button @click="createTask">asd</button>
             </form>
           </div>
-           <Tasks :tasks="tasks"
-                  @remove="removeTask"></Tasks>
+          <Tasks
+            :tasks="tasks"
+            @remove="removeTask"
+            @addFav="addFavorit"
+          ></Tasks>
         </div>
-         <favorites></favorites>
+        <favorites :tasks="tasks"></favorites>
       </div>
-     
     </div>
   </div>
 </template>

@@ -1,29 +1,33 @@
 <script>
 export default {
-  props:{
+  props: {
     tasks: {
       type: Array,
-      requared:true
-    }
+      taskFavorit: true,
+      requared: true,
+    },
   },
 };
 </script>
 
 <template>
   <div class="tasks">
-    <ul 
-    v-for="task in tasks" 
-    :task = "task"
-    :key="task.id"
-    @remove = "$emit('remove', task)">
+    <ul
+      v-if="tasks.length > 0"
+      v-for="task in tasks"
+      :task="task"
+      :key="task.id"
+    >
       <li>
-        <p>{{task.textTask}}</p>
+        <p>{{ task.textTask }}</p>
         <div class="btnsActions">
-          <i>f</i>
+          <button @click="$emit('addFav', task)">f</button>
           <button @click="$emit('remove', task)">x</button>
         </div>
       </li>
     </ul>
+
+    <h3 v-else>Задачи отстуствуют</h3>
   </div>
 </template>
 
@@ -41,11 +45,11 @@ ul li {
   align-items: center;
 }
 
-i{
+i {
   margin: 0 10px;
 }
 
-i:hover{
+i:hover {
   font-size: large;
 }
 
