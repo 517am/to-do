@@ -1,7 +1,9 @@
-<script></script>
+<script>
+
+</script>
 
 <template>
-<div class="favoritTask">
+<div class="favoriteTask">
      
      <h1>Избранные задачи</h1>
      
